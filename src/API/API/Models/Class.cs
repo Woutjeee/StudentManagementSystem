@@ -9,6 +9,7 @@
         public int ClassRoom { get; set; }
 
         public ICollection<Student> Students { get; set; }
+        public List<ClassStudent> ClassStudents { get; set; }
 
         public Guid TeacherForeignKey { get; set; }
 

@@ -21,9 +21,6 @@
         public int Phonenumber { get; set; }
 
         public ICollection<Class> Classes { get; set; }
-
-        public Guid GroupForeginKey { get; set; }
-
-        public Group Group { get; set; }
+        public List<ClassStudent> ClassStudents { get; set; }
     }
 }

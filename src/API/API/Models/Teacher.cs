@@ -21,7 +21,5 @@
         public int Phonenumber { get; set; }
 
         public List<Class> Classes { get; set; }
-
-        public Group Group { get; set; }
     }
 }
