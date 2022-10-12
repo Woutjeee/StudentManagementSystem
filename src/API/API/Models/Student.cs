@@ -1,4 +1,6 @@
-﻿namespace API.Models
+﻿using System.Text.Json.Serialization;
+
+namespace API.Models
 {
     public class Student
     {
@@ -20,7 +22,7 @@
 
         public int Phonenumber { get; set; }
 
-        public ICollection<Class> Classes { get; set; }
-        public List<ClassStudent> ClassStudents { get; set; }
+        [JsonIgnore]
+        public List<Class> Classes { get; set; }
     }
 }

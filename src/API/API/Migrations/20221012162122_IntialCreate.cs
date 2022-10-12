@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IntialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,22 +71,21 @@ namespace API.Migrations
                 name: "ClassStudent",
                 columns: table => new
                 {
-                    ClassId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    ClassesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StudentsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassStudent", x => new { x.StudentId, x.ClassId });
+                    table.PrimaryKey("PK_ClassStudent", x => new { x.ClassesId, x.StudentsId });
                     table.ForeignKey(
-                        name: "FK_ClassStudent_Classes_ClassId",
-                        column: x => x.ClassId,
+                        name: "FK_ClassStudent_Classes_ClassesId",
+                        column: x => x.ClassesId,
                         principalTable: "Classes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClassStudent_Students_StudentId",
-                        column: x => x.StudentId,
+                        name: "FK_ClassStudent_Students_StudentsId",
+                        column: x => x.StudentsId,
                         principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -98,9 +97,9 @@ namespace API.Migrations
                 column: "TeacherForeignKey");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClassStudent_ClassId",
+                name: "IX_ClassStudent_StudentsId",
                 table: "ClassStudent",
-                column: "ClassId");
+                column: "StudentsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

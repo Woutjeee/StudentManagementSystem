@@ -2,15 +2,15 @@
 {
     public interface IGeneric<T>
     {
-        public T GetById(Guid id);
-
         public List<T> GetAll();
 
-        public void Create(T type);
+        public T GetById(Guid id);
 
-        public void Update(T type);
+        public T Create(T type);
 
-        public T Delete(Guid id);
+        public T Update(T type);
+
+        public T Delete(T type);
 
         public bool Exisits(Guid id);
     }

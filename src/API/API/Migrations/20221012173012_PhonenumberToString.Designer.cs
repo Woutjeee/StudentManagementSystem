@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20221012072034_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20221012173012_PhonenumberToString")]
+    partial class PhonenumberToString
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,26 +45,6 @@ namespace API.Migrations
                     b.HasIndex("TeacherForeignKey");
 
                     b.ToTable("Classes");
-                });
-
-            modelBuilder.Entity("API.Models.ClassStudent", b =>
-                {
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClassId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("StartDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.HasKey("StudentId", "ClassId");
-
-                    b.HasIndex("ClassId");
-
-                    b.ToTable("ClassStudent");
                 });
 
             modelBuilder.Entity("API.Models.Student", b =>
@@ -137,8 +117,9 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phonenumber")
-                        .HasColumnType("int");
+                    b.Property<string>("Phonenumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Postalcode")
                         .IsRequired()
@@ -147,6 +128,21 @@ namespace API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("ClassStudent", b =>
+                {
+                    b.Property<Guid>("ClassesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("StudentsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ClassesId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("ClassStudent");
                 });
 
             modelBuilder.Entity("API.Models.Class", b =>
@@ -160,33 +156,19 @@ namespace API.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("API.Models.ClassStudent", b =>
+            modelBuilder.Entity("ClassStudent", b =>
                 {
-                    b.HasOne("API.Models.Class", "Class")
-                        .WithMany("ClassStudents")
-                        .HasForeignKey("ClassId")
+                    b.HasOne("API.Models.Class", null)
+                        .WithMany()
+                        .HasForeignKey("ClassesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Student", "Student")
-                        .WithMany("ClassStudents")
-                        .HasForeignKey("StudentId")
+                    b.HasOne("API.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("API.Models.Class", b =>
-                {
-                    b.Navigation("ClassStudents");
-                });
-
-            modelBuilder.Entity("API.Models.Student", b =>
-                {
-                    b.Navigation("ClassStudents");
                 });
 
             modelBuilder.Entity("API.Models.Teacher", b =>

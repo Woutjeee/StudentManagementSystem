@@ -1,4 +1,6 @@
-﻿namespace API.Models
+﻿using System.Text.Json.Serialization;
+
+namespace API.Models
 {
     public class Class
     {
@@ -8,11 +10,12 @@
 
         public int ClassRoom { get; set; }
 
-        public ICollection<Student> Students { get; set; }
-        public List<ClassStudent> ClassStudents { get; set; }
+        [JsonIgnore]
+        public List<Student>? Students { get; set; }
 
         public Guid TeacherForeignKey { get; set; }
 
-        public Teacher Teacher { get; set; }
+        [JsonIgnore]
+        public Teacher? Teacher { get; set; }
     }
 }

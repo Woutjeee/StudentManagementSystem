@@ -18,8 +18,8 @@
 
         public string Email { get; set; }
 
-        public int Phonenumber { get; set; }
+        public string Phonenumber { get; set; }
 
-        public List<Class> Classes { get; set; }
+        public List<Class>? Classes { get; set; }
     }
 }
