@@ -25,7 +25,7 @@ namespace API.Repository
             var x = _entity.Find(id);
             if (x is not null)
                 return x;
-            throw new ArgumentNullException();
+            return null;
         }
 
         public T Create(T type)

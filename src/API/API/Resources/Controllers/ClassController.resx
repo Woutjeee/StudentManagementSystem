@@ -123,4 +123,7 @@
   <data name="NoIdProvidedOnGet" xml:space="preserve">
     <value>There was no Id provided.</value>
   </data>
+  <data name="NoValidTeacherIdProvided" xml:space="preserve">
+    <value>There is no teacher with that id.</value>
+  </data>
 </root>

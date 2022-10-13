@@ -8,7 +8,7 @@ namespace API.Models
 
         public string ClassName { get; set; }
 
-        public int ClassRoom { get; set; }
+        public string ClassRoom { get; set; }
 
         [JsonIgnore]
         public List<Student>? Students { get; set; }
