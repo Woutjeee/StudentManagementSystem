@@ -1,4 +1,6 @@
+using API.Attributes;
 using API.Data;
+using API.Filters;
 using API.Interfaces;
 using API.Options;
 using API.Repository;
@@ -40,6 +42,7 @@ builder.Services.AddSwaggerGen(c =>
         Version = "V1",
         Description = "Api used for managing students."
     });
+    c.SchemaFilter<SwaggerIgnoreFilter>();
     var filePath = Path.Combine(AppContext.BaseDirectory, "API.xml");
     c.IncludeXmlComments(filePath);
 });

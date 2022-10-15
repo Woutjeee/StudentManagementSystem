@@ -10,8 +10,11 @@ namespace API.Data
         }
 
         public DbSet<Class> Classes { get; set; }
-        public DbSet<Student> Students { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Student> Students { get; set; }
+        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +22,8 @@ namespace API.Data
                 .HasOne(p => p.Teacher)
                 .WithMany(x => x.Classes)
                 .HasForeignKey(x => x.TeacherForeignKey);
+
+            modelBuilder.Entity<Student>().Property(x => x.StudentNumber).ValueGeneratedOnAdd();
         }
     }
 }

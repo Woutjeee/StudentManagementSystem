@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using API.Attributes;
 
 namespace API.Models
 {
@@ -10,8 +11,8 @@ namespace API.Models
 
         public string ClassRoom { get; set; }
 
-        [JsonIgnore]
-        public List<Student>? Students { get; set; }
+        [SwaggerIgnore]
+        public ICollection<Student>? Students { get; set; }
 
         public Guid TeacherForeignKey { get; set; }
 

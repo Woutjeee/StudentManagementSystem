@@ -8,11 +8,11 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentController : GenericController<Student, IStudent, StudentController>
+    public class UserController : GenericController<User, IStudent, UserController>
     {
-        public StudentController(
+        public UserController(
             IStudent iStudent,
-            IStringLocalizer<StudentController> localizer)
+            IStringLocalizer<UserController> localizer)
             : base(iStudent, localizer) 
         { 
         }
