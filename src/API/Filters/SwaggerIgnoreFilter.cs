@@ -1,9 +1,9 @@
-﻿using API.Attributes;
+﻿using System.Reflection;
+using API.Attributes;
 using API.Extensions;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Reflection;
 
 namespace API.Filters
 {

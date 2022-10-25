@@ -2,7 +2,7 @@
 
 namespace API.Interfaces
 {
-    public interface IStudent : IGeneric<User>
+    public interface IStudent : IGeneric<UserInfo>
     {
     }
 }

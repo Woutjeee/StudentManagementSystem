@@ -1,5 +1,4 @@
-﻿using System.Data;
-using API.Interfaces;
+﻿using API.Interfaces;
 using API.Options;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
@@ -24,7 +23,7 @@ namespace API.Services
                 conn.Open();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

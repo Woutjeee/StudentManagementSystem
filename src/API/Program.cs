@@ -1,4 +1,3 @@
-using API.Attributes;
 using API.Data;
 using API.Filters;
 using API.Interfaces;
@@ -28,13 +27,13 @@ builder.Services.AddDbContext<DatabaseContext>(
 builder.Services.AddTransient<IClass, ClassRepository>();
 builder.Services.AddTransient<IStudent, StudentRepository>();
 builder.Services.AddTransient<ITeacher, TeacherRepository>();
-
+builder.Services.AddTransient<IUserInfo, UserInfoRepository>();
 
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c => 
+builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {

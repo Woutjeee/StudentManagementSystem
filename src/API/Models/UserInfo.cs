@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 using API.Attributes;
 
 namespace API.Models
 {
-    public class User
+    public class UserInfo
     {
+        [SwaggerIgnore]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         public string Firstname { get; set; }
@@ -22,13 +23,10 @@ namespace API.Models
 
         public string Email { get; set; }
 
-        public int Phonenumber { get; set; }
+        public string Phonenumber { get; set; }
 
-        [NotMapped]
         public string Password { get; set; } = "Welkom1!";
 
-        public string PasswordHash { get; set; }
-
-        public string PasswordSalt { get; set; }
+        public string Role { get; set; } = Enums.Role.NewAccount.ToString();
     }
 }

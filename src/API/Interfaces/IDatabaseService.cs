@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace API.Interfaces
+﻿namespace API.Interfaces
 {
     public interface IDatabaseService
     {

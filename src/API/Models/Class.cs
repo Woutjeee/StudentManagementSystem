@@ -13,6 +13,8 @@ namespace API.Models
 
         [SwaggerIgnore]
         public ICollection<Student>? Students { get; set; }
+        [JsonIgnore]
+        public List<ClassStudent> ClassStudents { get; set; }
 
         public Guid TeacherForeignKey { get; set; }
 

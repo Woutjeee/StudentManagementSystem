@@ -1,6 +1,4 @@
-﻿using API.Extensions;
-using API.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -60,7 +58,7 @@ namespace API.Controllers
                 return BadRequest(_localizer.GetString("NoContentPostMessage").Value);
             return await Task.FromResult(_repo.Create(type));
         }
-        
+
         /// <summary>
         /// Update a object.
         /// </summary>

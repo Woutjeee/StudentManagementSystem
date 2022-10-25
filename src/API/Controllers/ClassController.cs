@@ -1,8 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using API.Interfaces;
+﻿using API.Interfaces;
 using API.Models;
-using API.Repository;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -10,6 +8,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Teacher, Administrator")]
     public class ClassController : GenericController<Class, IClass, ClassController>
     {
         private readonly IClass _iClass;

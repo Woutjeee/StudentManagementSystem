@@ -1,6 +1,7 @@
-﻿using API.Interfaces;
+﻿
+using API.Interfaces;
 using API.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -8,6 +9,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Teacher")]
     public class TeacherController : GenericController<Teacher, ITeacher, TeacherController>
     {
         public TeacherController(

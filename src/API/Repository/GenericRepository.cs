@@ -28,7 +28,7 @@ namespace API.Repository
             return null;
         }
 
-        public T Create(T type)
+        public virtual T Create(T type)
         {
             _entity.Add(type);
             _dbContext.SaveChanges();
