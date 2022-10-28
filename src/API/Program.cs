@@ -18,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
 builder.Services.Configure<ApplicationOptions>(configutation.GetSection("StudentManagementSystem"));
 builder.Services.AddScoped<IDatabaseService, DatabaseService>();
+builder.Services.AddScoped<IJwtSerivce, JwtService>();
 
 var databaseService = builder.Services.BuildServiceProvider().GetService<IDatabaseService>();
 builder.Services.AddDbContext<DatabaseContext>(

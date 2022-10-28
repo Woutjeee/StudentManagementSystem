@@ -45,6 +45,16 @@ public class UserInfoRepository : GenericRepository<UserInfo>, IUserInfo
         }
         return false;
     }
+
+    public UserInfo GetUserByEmail(string email)
+    {
+        var user = _databaseContext.Users.FirstOrDefault(x => x.Email == email);
+        if (user is not null)
+        {
+            return user;
+        }
+        return null;
+    }
 }
 
 public static class SecretHasher
