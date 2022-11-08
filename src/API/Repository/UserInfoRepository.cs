@@ -14,7 +14,7 @@ public class UserInfoRepository : GenericRepository<UserInfo>, IUserInfo
     }
 
     /// <summary>
-    /// Test
+    /// Creates a new user.
     /// </summary>
     /// <param name="userInfo"></param>
     /// <returns></returns>
@@ -48,7 +48,7 @@ public class UserInfoRepository : GenericRepository<UserInfo>, IUserInfo
 
     public UserInfo GetUserByEmail(string email)
     {
-        var user = _databaseContext.Users.FirstOrDefault(x => x.Email == email);
+        var user = _databaseContext.Users.First(x => x.Email == email);
         if (user is not null)
         {
             return user;

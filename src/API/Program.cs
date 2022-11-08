@@ -12,7 +12,18 @@ var configutation = new ConfigurationBuilder()
     .AddJsonFile("./appsettings.json", false)
     .Build();
 
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(policy =>
+{
+    policy.AddPolicy("_myAllowSpecificOrigins", builder => builder.WithOrigins("https://localhost:7241/")
+        .SetIsOriginAllowed(host => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
+});
 
 // Add services to the container.
 builder.Services.AddLocalization(opt => opt.ResourcesPath = "Resources");
