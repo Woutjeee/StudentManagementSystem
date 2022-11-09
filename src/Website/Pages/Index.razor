@@ -1,2 +1,34 @@
 ﻿@page "/"
 
+<PageTitle>Index</PageTitle>
+
+<Field Name="Username"
+       InputType="Enums.InputType.Text"
+       InputOnePlaceholder="Username"
+       HasIconLabel="false"
+       LocalizedLabel="Username"
+       LocalizedDescription="Please enter your username" />
+
+<Field Name="Password"
+       InputType="Enums.InputType.Password"
+       InputOnePlaceholder="Password"
+       LocalizedLabel="Password"
+       LocalizedDescription="Please enter your Password"
+       HasIconLabel="true"
+       IconLabel="@($"@")"
+       LabelType="LabelType.Before" />
+
+
+<MudButton OnClick="@(() => Test())">Test</MudButton>
+
+@code {
+    public string Username { get; set; }
+    public string Password { get; set; }
+
+
+    void Test()
+    {
+
+    }
+}
+

@@ -1,0 +1,55 @@
+﻿@inherits FieldComponent
+
+<div class="m-2 w-25">
+    @if (InputType == Enums.InputType.Text && LabelType == LabelType.Middle)
+    {
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="multipleFieldsCheckbox" @bind-value="MultipleInputFields" />
+            <label class="form-check-label" for="multipleFieldsCheckbox">
+                Field has multiple input fields.
+            </label>
+        </div>
+    }
+    <div class="input-group w-100 @Class">
+        @if (HasIconLabel)
+        {
+            @if (LabelType == LabelType.Before || !MultipleInputFields)
+            {
+                <div class="@(string.IsNullOrEmpty(LocalizedDescription) ? "" : "input-group-prepend")">
+                    <span class="input-group-text" id="@IconLabelId">@IconLabel</span>
+                </div>
+                <input type="@InputTypeString" class="form-control" @bind-value="@InputOne" placeholder="@Localizer[InputOnePlaceholder]" />
+
+            }
+            if (MultipleInputFields)
+            {
+                <input type="text" class="form-control" @bind-value="@InputOne" placeholder="@Localizer[InputOnePlaceholder]" />
+                <span class="input-group-text" id="@IconLabelId">@IconLabel</span>
+                <input type="text" class="form-control" @bind-value="@InputTwo" placeholder="@Localizer[InputTwoPlaceholder]" />
+            }
+            else if (LabelType == LabelType.After)
+            {
+                <input type="@InputTypeString" class="form-control" @bind-value="@InputOne" />
+                <span class="input-group-text" id="@IconLabelId">@IconLabel</span>
+            }
+        }
+        else
+        {
+            <div class="form-group w-100">
+                @if (!string.IsNullOrEmpty(LocalizedLabel))
+                {
+                    <label for="@LocalizedLabelId">@Localizer[LocalizedLabel]</label>
+                }
+                <input type="@InputType"
+                   class="form-control"
+                   placeholder="@Localizer[InputOnePlaceholder]"
+                   id="@(!string.IsNullOrEmpty(LocalizedLabel) ? LocalizedLabelId : "")"
+                   aria-labelledby="@(!string.IsNullOrEmpty(LocalizedDescription) ? LocalizedDescriptionId : "")" />
+                @if (!string.IsNullOrEmpty(LocalizedDescription))
+                {
+                    <small id="@LocalizedDescriptionId">@Localizer[LocalizedDescription]</small>
+                }
+            </div>
+        }
+    </div>
+</div>

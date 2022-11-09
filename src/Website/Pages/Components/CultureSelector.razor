@@ -1,0 +1,15 @@
+﻿@inherits CultureSelectorComponent
+@using System.Globalization
+
+<div class="d-flex justify-content-center">
+    <div class="culture-selector">
+        <MudSelect T="CultureInfo" Variant="Variant.Outlined" Label="@(Localizer[CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName])" SelectedValuesChanged="() => SetNewCulture()">
+            @foreach (var culture in SupportedCultures)
+            {
+                <MudSelectItem Value="@(culture)">
+                    <img src="/img/@(culture.Name).png" height="14" class="mr-1" alt="Language Flag" /> @(NewCulture = culture)
+                </MudSelectItem>
+            }
+        </MudSelect>
+    </div>
+</div>
