@@ -3,7 +3,6 @@
     public enum LabelType
     {
         Before,
-        After,
-        Middle
+        After
     }
 }

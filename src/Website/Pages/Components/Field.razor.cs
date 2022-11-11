@@ -25,6 +25,8 @@ namespace Website.Pages.Components
         [Parameter]
         public string LocalizedDescription { get; set; }
 
+        [Parameter]
+        public string LocalizedRequiredError { get; set; }
 
         [Parameter, EditorRequired]
         public string InputOnePlaceholder { get; set; }
@@ -44,24 +46,6 @@ namespace Website.Pages.Components
         [Parameter]
         public EventCallback<string> InputOneChanged { get; set; }
 
-        [Parameter]
-        public string InputTwoPlaceholder { get; set; }
-
-        [Parameter]
-        public string InputTwo
-        {
-            get => _valueOne;
-            set
-            {
-                if (_valueOne == value) return;
-                _valueOne = value;
-                InputTwoChanged.InvokeAsync(value);
-            }
-        }
-
-        [Parameter]
-        public EventCallback<string> InputTwoChanged { get; set; }
-
         [Parameter, EditorRequired]
         public InputType InputType { get; set; }
 
@@ -78,7 +62,6 @@ namespace Website.Pages.Components
         public string IconLabel { get; set; }
 
         protected string InputTypeString;
-        protected bool MultipleInputFields;
 
         protected override void OnInitialized()
         {

@@ -14,9 +14,31 @@
        InputOnePlaceholder="Password"
        LocalizedLabel="Password"
        LocalizedDescription="Please enter your Password"
+       LocalizedRequiredError="DividerType is test"
        HasIconLabel="true"
        IconLabel="@($"@")"
        LabelType="LabelType.Before" />
+
+
+<Field Name="Password"
+       InputType="Enums.InputType.Password"
+       InputOnePlaceholder="Password"
+       LocalizedLabel="Password"
+       LocalizedDescription="Please enter your Password"
+       LocalizedRequiredError="DividerType is test"
+       HasIconLabel="true"
+       IconLabel="@($"@")"
+       LabelType="LabelType.Before" />
+
+<Field Name="Password"
+       InputType="Enums.InputType.Text"
+       InputOnePlaceholder="Password"
+       LocalizedLabel="Password"
+       LocalizedDescription="Please enter your Password"
+       LocalizedRequiredError="DividerType is test"
+       HasIconLabel="true"
+       IconLabel="@($"@")"
+       LabelType="LabelType.After" />
 
 
 <MudButton OnClick="@(() => Test())">Test</MudButton>

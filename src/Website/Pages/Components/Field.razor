@@ -1,47 +1,57 @@
 ﻿@inherits FieldComponent
 
 <div class="m-2 w-25">
-    @if (InputType == Enums.InputType.Text && LabelType == LabelType.Middle)
-    {
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="multipleFieldsCheckbox" @bind-value="MultipleInputFields" />
-            <label class="form-check-label" for="multipleFieldsCheckbox">
-                Field has multiple input fields.
-            </label>
-        </div>
-    }
-    <div class="input-group w-100 @Class">
+    <div class="@("input-group w-100 " + Class)">
         @if (HasIconLabel)
         {
-            @if (LabelType == LabelType.Before || !MultipleInputFields)
+            @if (LabelType == LabelType.Before)
             {
-                <div class="@(string.IsNullOrEmpty(LocalizedDescription) ? "" : "input-group-prepend")">
-                    <span class="input-group-text" id="@IconLabelId">@IconLabel</span>
+                @if (!string.IsNullOrEmpty(LocalizedLabel))
+                {
+                    <label for="@LocalizedLabelId" class="form-label">@Localizer[LocalizedLabel]</label>
+                }
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="@(IconLabelId)">@IconLabel</span>
+                    <input type="@InputTypeString" class="form-control" @bind-value="@InputOne" placeholder="@Localizer[InputOnePlaceholder]" aria-describedby="@(IconLabelId)" aria-labelledby="@(!string.IsNullOrEmpty(LocalizedDescription) ? LocalizedDescriptionId : "")" />
+                    <div class="invalid-feedback">
+                        @LocalizedRequiredError
+                    </div>
                 </div>
-                <input type="@InputTypeString" class="form-control" @bind-value="@InputOne" placeholder="@Localizer[InputOnePlaceholder]" />
+                @if (!string.IsNullOrEmpty(LocalizedDescription))
+                {
+                    <small id="@LocalizedDescriptionId" class="mt-1">@Localizer[LocalizedDescription]</small>
+                }
 
-            }
-            if (MultipleInputFields)
-            {
-                <input type="text" class="form-control" @bind-value="@InputOne" placeholder="@Localizer[InputOnePlaceholder]" />
-                <span class="input-group-text" id="@IconLabelId">@IconLabel</span>
-                <input type="text" class="form-control" @bind-value="@InputTwo" placeholder="@Localizer[InputTwoPlaceholder]" />
             }
             else if (LabelType == LabelType.After)
             {
-                <input type="@InputTypeString" class="form-control" @bind-value="@InputOne" />
-                <span class="input-group-text" id="@IconLabelId">@IconLabel</span>
+                @if (!string.IsNullOrEmpty(LocalizedLabel))
+                {
+                    <label for="@LocalizedLabelId" class="form-label">@Localizer[LocalizedLabel]</label>
+                }
+
+                <div class="input-group has-validation">
+                    <input type="@InputTypeString" class="form-control" @bind-value="@InputOne" placeholder="@Localizer[InputOnePlaceholder]" aria-describedby="@(IconLabelId)" />
+                    <span class="input-group-text" id="@(IconLabelId)">@IconLabel</span>
+                    <div class="invalid-feedback">
+                        @LocalizedRequiredError
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(LocalizedDescription))
+                {
+                    <small id="@LocalizedDescriptionId" class="mt-1">@Localizer[LocalizedDescription]</small>
+                }
             }
         }
         else
         {
-            <div class="form-group w-100">
-                @if (!string.IsNullOrEmpty(LocalizedLabel))
-                {
-                    <label for="@LocalizedLabelId">@Localizer[LocalizedLabel]</label>
-                }
+            @if (!string.IsNullOrEmpty(LocalizedLabel))
+            {
+                <label for="@LocalizedLabelId" class="form-label">@Localizer[LocalizedLabel]</label>
+            }
+            <div class="input-group has-validation w-100 flex-column">
                 <input type="@InputType"
-                   class="form-control"
+                   class="form-control w-100"
                    placeholder="@Localizer[InputOnePlaceholder]"
                    id="@(!string.IsNullOrEmpty(LocalizedLabel) ? LocalizedLabelId : "")"
                    aria-labelledby="@(!string.IsNullOrEmpty(LocalizedDescription) ? LocalizedDescriptionId : "")" />
@@ -49,6 +59,9 @@
                 {
                     <small id="@LocalizedDescriptionId">@Localizer[LocalizedDescription]</small>
                 }
+                <div class="invalid-feedback">
+                    @LocalizedRequiredError
+                </div>
             </div>
         }
     </div>
